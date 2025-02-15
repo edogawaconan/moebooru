@@ -1,6 +1,6 @@
 $ = jQuery
 
-cookieKey = 'hide-news-ticker'
+key = 'hide_news_ticker'
 
 export default class NewsTicker
 
@@ -15,11 +15,11 @@ export default class NewsTicker
     return if @$newsTicker.attr('data-news-hide') == '1'
 
     @$newsTicker.find('.close-link').click @onCloseLink
-    if Cookies.get(cookieKey) != @newsDate
+    if localStorage.getItem(key) != @newsDate
       @$newsTicker.show()
 
 
   onCloseLink: (e) =>
     e.preventDefault()
     @$newsTicker.hide()
-    Cookies.set cookieKey, @newsDate, expires: 365
+    localStorage.setItem key, @newsDate
